@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Welcome{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+</head>
+<body>
+    <div class="w-[90%] md:w-[70%] m-auto">
+        <header>
+            <div class="bg-blue-500 text-white text-center text-4xl p-4">
+                TENNIS CLUB
+            </div>
+        </header>
+    
+        <div class="container mt-[20px]">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</body>
+</html>

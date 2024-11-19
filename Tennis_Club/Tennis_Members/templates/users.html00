@@ -1,0 +1,47 @@
+
+{% extends 'header/header.html' %}
+{% block title %}User List{% endblock %}
+
+{% block content %}
+<div class="w-[100%] bg-blue-400 p-[10px]">
+    <div class="flex justify-between items-end">
+        <div class="text-white text-2xl">
+            Members
+        </div>
+        <a href="{% url 'create-user' %}" class="text-white text-xl hover:text-green-700 cursor-pointer underline">
+            Create New Member
+        </a>
+        <p class="text-white text-sm hover:text-gray-700 cursor-pointer" id="show_toggle" onclick="toggle()">{% if show %}Only Active Users{% else %}Show All{% endif %}</p>
+    </div>
+    <table class="table-auto text-white w-[100%]">
+        <thead class="text-left">
+            <th>Name</th>
+            <th>Description</th>
+            <th>status</th>
+            <th>action</th>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.description }}</td>
+                    <td><input type="checkbox" {% if user.status %}checked{% endif %}></td>
+                    <td class="flex justify-start">
+                        <a href="" class="bg-gray-500">Edit</a>
+                        <a href="" class="bg-red-500">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    let show = {{ show|yesno:"true,false" }}; // Pass the initial value of show from Django to JavaScript
+    console.log(show);
+    async function toggle() {
+        show = !show;
+        window.location.href = `?show=${show}`;
+    }
+</script>
+{% endblock %}

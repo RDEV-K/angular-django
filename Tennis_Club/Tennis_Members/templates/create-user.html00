@@ -1,0 +1,33 @@
+{% extends 'header/header.html' %}
+
+{% block title %}Create User{% endblock %}
+
+{% block content %}
+    <div class="bg-blue-400 w-[100%] p-[10px]">
+        <h1 class="text-white text-3xl text-center pt-[30px]">Create New User</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="mb-4">
+                <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name</label>
+                <input type="text" name="name" id="name" value="{{ data.name }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight hover:border-slate-300 active:outline-none active:border-slate-300">
+                {% if errors.name %}
+                    <p class="text-red-500 text-xs italic">{{ errors.name }}</p>
+                {% endif %}
+            </div>
+
+            <div class="mb-4">
+                <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Name</label>
+                <textarea type="text" name="description" id="description" value="{{ data.description }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight"></textarea>
+                {% if errors.description %}
+                    <p class="text-red-500 text-xs italic">{{ errors.description }}</p>
+                {% endif %}
+            </div>
+            <a type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-[10px]">
+                Submit
+            </a>
+            <a href="/" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded h-[40px]">
+                Back
+            </a>
+        </form>
+    </div>
+{% endblock %}
